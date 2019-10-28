@@ -10,8 +10,15 @@ package Classes;
  * @author Sebas
  */
 public class Usuario {
-    int ID;
-    String nombre;
-    String tipoLicencia;
-    Usuario sig;
+    public int ID;
+    public String nombre;
+    public String tipoLicencia;
+    public Usuario sig;
+
+    public Usuario(int ID, String nombre, String tipoLicencia) {
+        this.ID = ID;
+        this.nombre = nombre;
+        this.tipoLicencia = tipoLicencia;
+    }    
+    
 }
