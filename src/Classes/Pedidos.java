@@ -11,14 +11,17 @@ package Classes;
  */
 public class Pedidos {
     int id;
-    String origen;
+    int peso;
     String destino;
+    String origen;
+    Pedidos sig;
 
-    public Pedidos(int id, String origen, String destino) {
+    public Pedidos(int id, int peso, String destino, String origen) {
         this.id = id;
-        this.origen = origen;
+        this.peso = peso;
         this.destino = destino;
+        this.origen = origen;
     }
-    
+
     
 }
