@@ -6,6 +6,7 @@
 package Main;
 
 import Classes.Usuario;
+import Frames.MainFrame;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Main {
         // TODO code application logic here
         Usuario[] listaUsuarios = new Usuario [50];
         
+        MainFrame fr = new MainFrame();//Crear el FrameRegistro XD
+        fr.setVisible(true);
     }
     
 }
