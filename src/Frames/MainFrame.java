@@ -260,6 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
         // TODO add your handling code here:
         Consults fr = new Consults();
+        fr.llenarCombobox();
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnConsultActionPerformed

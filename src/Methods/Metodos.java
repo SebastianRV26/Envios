@@ -51,6 +51,10 @@ public class Metodos {
         return null;
     }
 
+    public String insertarArco2(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
+        return insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax, peso);
+    }
+    
     public String insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
         if (buscar(origen, destino) == null) {
             Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax, peso);
@@ -62,6 +66,7 @@ public class Metodos {
                 origen.sigA.antA = nuevo;
                 origen.sigA = nuevo;
             }
+            insertarArco2(destino, origen, distancia, pasoVehiculosPesados, velMax, peso);
             return "Insertado";
         }
         return "No se pueden repetir arcos";
@@ -165,7 +170,7 @@ public class Metodos {
             System.out.println("Ruta: " + ruta + destino.nombre);
             System.out.println("Con una distancia de: " + dist);
 
-            if ((rc == "") || (minRC > dist)) {
+            if ((rc.equals("")) || (minRC > dist)) {
                 rc = ruta + destino.nombre;
                 minRC = dist;
             }
