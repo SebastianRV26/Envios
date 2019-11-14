@@ -15,7 +15,7 @@ import javax.swing.DefaultListModel;
  */
 public class Metodos {
     
-    DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
+    public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
     
     public static Metodos instance = null;
     public static Metodos getInstance(){
@@ -25,7 +25,7 @@ public class Metodos {
         return instance;
     }
     
-    DefaultListModel<String> listModel = new DefaultListModel<>();
+    public DefaultListModel<String> listModel = new DefaultListModel<>();
     
     public Ciudad grafo;
     
