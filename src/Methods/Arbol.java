@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  */
 public class Arbol {
    public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
-    
+    boolean bandera = false;
     int alt =0;
     int hojas = 0;
     int nodos = 0;
@@ -32,25 +32,29 @@ public class Arbol {
         Pedidos nuevo = new Pedidos(id,peso,destino,origen);
         if (raiz==null){
             raiz = nuevo;
+            bandera = true;
             return true;
         }
         if (id==aux.id){
+            bandera = false;
             return false;
         }
         if (id < aux.id){
             if (aux.izq==null){
                 aux.izq = nuevo;
+                bandera = true;
                 return true;
             }
             insertar (id, aux.izq,peso,origen,destino);
         }else{
             if (aux.der==null){
                 aux.der = nuevo;
+                bandera = true;
                 return true;
             }
             insertar(id, aux.der,peso,origen,destino);
         }
-        return false;
+      return bandera;
     }
     
     public void imprimir(Pedidos aux){
@@ -58,6 +62,7 @@ public class Arbol {
             imprimir(aux.izq);
             LISTMODEL.addElement("id " + aux.id);
             LISTMODEL.addElement("Peso " + aux.peso);
+            LISTMODEL.addElement("------------------");
             imprimir (aux.der);   
     }
     

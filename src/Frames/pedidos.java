@@ -137,7 +137,7 @@ public class pedidos extends javax.swing.JFrame {
             int peso = Integer.parseInt(jTextField4.getText());
             String destino = jTextField3.getText();
             String origen = jTextField4.getText();
-            if(arbol.insertar(id, arbol.raiz, peso, origen, destino)){
+        if(arbol.insertar(id, arbol.raiz, peso, origen, destino)){
             JOptionPane.showMessageDialog(this,"Pedido Insertado");
         }else{
             JOptionPane.showMessageDialog(this,"Pedido no insertado, el ID ya existe");

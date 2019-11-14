@@ -22,7 +22,7 @@ public static Usuario[] listaUsuarios = new Usuario [13];
         System.out.println("hola");
         Metodos met = Metodos.getInstance();
         //arbol quemado
-        Arbol arbol = new Arbol();
+        Arbol arbol = Arbol.getInstance();
         
         arbol.insertar(50,arbol.raiz,300,"fdso","fsdf");
         arbol.insertar(2,arbol.raiz,86,"fdso","fsdf");
