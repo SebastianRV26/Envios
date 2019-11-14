@@ -286,14 +286,19 @@ public class Consults extends javax.swing.JFrame {
 
     private void printProfundidadGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printProfundidadGrafoActionPerformed
         // TODO add your handling code here:
+        met.LISTMODEL.clear();
         met.quitarMarca();
-        met.profundidad(met.buscar(jComboBox1.getName()));
+        met.profundidad(met.buscar(jComboBox1.getSelectedItem().toString()));
+        jList1.setModel(met.LISTMODEL);
     }//GEN-LAST:event_printProfundidadGrafoActionPerformed
 
     private void printAmplitudGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printAmplitudGrafoActionPerformed
         // TODO add your handling code here:
+        met.listModel.clear();
         met.quitarMarca(); 
-        met.amplitud(met.buscar(jComboBox1.getName()));
+        System.out.println(jComboBox1.getName());
+        met.amplitud(met.buscar(jComboBox1.getSelectedItem().toString()));
+        jList1.setModel(met.listModel);
     }//GEN-LAST:event_printAmplitudGrafoActionPerformed
 
     /**
