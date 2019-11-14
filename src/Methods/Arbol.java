@@ -6,12 +6,15 @@
 package Methods;
 
 import Classes.Pedidos;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author pache
  */
 public class Arbol {
+   public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
+    
     int alt =0;
     int hojas = 0;
     int nodos = 0;
@@ -53,8 +56,8 @@ public class Arbol {
     public void imprimir(Pedidos aux){
         if (aux == null){return;}
             imprimir(aux.izq);
-            System.out.println("id " + aux.id);
-            System.out.println("Peso " + aux.peso);
+            LISTMODEL.addElement("id " + aux.id);
+            LISTMODEL.addElement("Peso " + aux.peso);
             imprimir (aux.der);   
     }
     

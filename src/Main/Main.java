@@ -17,16 +17,7 @@ import Methods.Metodos;
  */
 public class Main {
 public static Usuario[] listaUsuarios = new Usuario [13];
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    
-    public Usuario[] listaUsuarios = new Usuario [13];
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {  
         Metodos met = Metodos.getInstance();
         //arbol quemado

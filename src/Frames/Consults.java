@@ -6,6 +6,7 @@
 package Frames;
 
 import Classes.Ciudad;
+import Methods.Arbol;
 import Methods.Metodos;
 
 /**
@@ -13,7 +14,7 @@ import Methods.Metodos;
  * @author Sebas
  */
 public class Consults extends javax.swing.JFrame {
-
+    Arbol arbol = Arbol.getInstance();
     Metodos met = Metodos.getInstance();
     /**
      * Creates new form Consults
@@ -247,6 +248,10 @@ public class Consults extends javax.swing.JFrame {
 
     private void printTreeInOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTreeInOrdenActionPerformed
         // TODO add your handling code here:
+         arbol.LISTMODEL.clear();
+        arbol.imprimir(arbol.raiz);
+        jList1.setModel(arbol.LISTMODEL);
+       
     }//GEN-LAST:event_printTreeInOrdenActionPerformed
 
     private void printHashTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printHashTableActionPerformed

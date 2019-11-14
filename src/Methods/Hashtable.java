@@ -13,6 +13,13 @@ import javax.swing.table.DefaultTableModel;
  * @author pache
  */
 public class Hashtable {
+    public static Hashtable instance = null;
+    public static Hashtable getInstance(){
+        if(instance == null){
+            instance = new Hashtable();
+        }
+        return instance;
+    }
     private int hash(int number){
         return (number & 0xfffffff)% 13;
     }
