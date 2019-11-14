@@ -5,12 +5,15 @@
  */
 package Frames;
 
+import Methods.Arbol;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pache
  */
 public class pedidos extends javax.swing.JFrame {
-
+    Arbol arbol = Arbol.getInstance();
     /**
      * Creates new form pedidos
      */
@@ -49,6 +52,11 @@ public class pedidos extends javax.swing.JFrame {
         jLabel4.setText("Peso");
 
         jButton1.setText("Crear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Atras");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +126,25 @@ public class pedidos extends javax.swing.JFrame {
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()||jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Hay espacios vacios");
+        }else{
+            int id = Integer.parseInt(jTextField1.getText());
+            int peso = Integer.parseInt(jTextField4.getText());
+            String destino = jTextField3.getText();
+            String origen = jTextField4.getText();
+            if(arbol.insertar(id, arbol.raiz, peso, origen, destino)){
+            JOptionPane.showMessageDialog(this,"Pedido Insertado");
+        }else{
+            JOptionPane.showMessageDialog(this,"Pedido no insertado, el ID ya existe");
+        }
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
