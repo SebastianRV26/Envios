@@ -25,7 +25,7 @@ public class Metodos {
     
     DefaultListModel<String> listModel = new DefaultListModel<>();
     
-    Ciudad grafo;
+    public Ciudad grafo;
     
     public String insertarVertices(String nombre) {
         Ciudad nuevo = new Ciudad(nombre, false);
@@ -116,6 +116,26 @@ public class Metodos {
     }
     ant.sigV = verticePorEliminar.sigV;
     return true;
+    }
+    
+    public void amplitud(Ciudad grafo)// metodo para imprimir el inicio en amplitud
+    {
+        if (grafo == null) {
+            System.out.println("No hay grafo");
+        } else {
+            Ciudad temp = grafo;
+            while (temp != null) {
+                listModel.addElement("Vertice: " + temp.nombre);
+                Camino aux = temp.sigA;
+                while (aux != null) {
+                    //listModel.addElement("Peso: " + aux.peso);
+                    listModel.addElement("Destino: " + aux.destino.nombre);
+                    aux = aux.sigA;
+                }
+                listModel.addElement("-----------");
+                temp = temp.sigV;
+            }
+        }
     }
     
     public void quitarMarca(){
