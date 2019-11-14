@@ -49,9 +49,9 @@ public class Metodos {
         return null;
     }
 
-    public String insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax) {
+    public String insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
         if (buscar(origen, destino) == null) {
-            Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax);
+            Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax, peso);
             nuevo.destino = destino;
             if (origen.sigA == null) {
                 origen.sigA = nuevo;

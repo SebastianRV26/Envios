@@ -78,6 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
         btnAddPath = new javax.swing.JButton();
         btnAddOrder = new javax.swing.JButton();
         btnAddUser = new javax.swing.JButton();
+        btnConsult = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,7 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
         canvasContainer.setLayout(canvasContainerLayout);
         canvasContainerLayout.setHorizontalGroup(
             canvasContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addGap(0, 738, Short.MAX_VALUE)
         );
         canvasContainerLayout.setVerticalGroup(
             canvasContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,27 +125,35 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        btnConsult.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Consult.png"))); // NOI18N
+        btnConsult.setText("Consultas");
+        btnConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(canvasContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addComponent(btnAddCity)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAddPath)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAddOrder)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAddUser)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnAddUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnConsult))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +167,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(btnAddPath)
                     .addComponent(btnAddCity)
                     .addComponent(btnAddOrder)
-                    .addComponent(btnAddUser))
+                    .addComponent(btnAddUser)
+                    .addComponent(btnConsult))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(canvasContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -184,15 +194,16 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Favor insertar una ciudad válida");
             return;
         }
-        String pesoString = JOptionPane.showInputDialog("Peso del camino:");
-        int peso;
+        
+        String distanciaString = JOptionPane.showInputDialog("Distancia del camino:");
+        int distancia;
         try{
-            peso = Integer.parseInt(pesoString);
+            distancia = Integer.parseInt(distanciaString);
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Favor insertar un número válido");
             return;
         }
-         
+        
         int seleccion = JOptionPane.showOptionDialog(
         null, "El camino soporta vehículos pesados?", /*text*/ "Camino",  /*title*/ JOptionPane.YES_NO_CANCEL_OPTION,
         JOptionPane.QUESTION_MESSAGE, /*icon*/ null, /* null para icono por defecto*/ 
@@ -204,16 +215,9 @@ public class MainFrame extends javax.swing.JFrame {
             }else{
                 pasoVehiculosPesados=false;
             }
-           System.out.println("seleccionada opcion " + (seleccion + 1));
         }else{
-            System.out.println("Seleccionó cancelar");
             return;
         }
-        //int variable = JOptionPane.showOptionDialog (null, "El camino soporta vehículos pesados?", "Camino", 
-        //        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null/*icono*/, botones, botones[0]);
-
-        //String pasoVehiculos = JOptionPane.showInputDialog("Paso de vehiculos pesados del camino? Si no");
-        //int pasoVehiculosPesados = Integer.parseInt(pasoVehiculos);
         
         String vel = JOptionPane.showInputDialog("Velocidad máxima del camino:");
         int velMax;
@@ -224,7 +228,16 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         
-        met.insertarArco(origen, destino, peso, pasoVehiculosPesados, velMax); 
+        String pesoString = JOptionPane.showInputDialog("Peso del camino:");
+        int peso;
+        try{
+            peso = Integer.parseInt(pesoString);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Favor insertar un número válido");
+            return;
+        }
+        
+        met.insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax, peso);
         //Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax
         //falta dibujar el camino
 
@@ -240,6 +253,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
+        // TODO add your handling code here:
+        Consults fr = new Consults();
+        fr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnConsultActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,6 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAddOrder;
     private javax.swing.JButton btnAddPath;
     private javax.swing.JButton btnAddUser;
+    private javax.swing.JButton btnConsult;
     private java.awt.Canvas canvas1;
     private javax.swing.JPanel canvasContainer;
     // End of variables declaration//GEN-END:variables
