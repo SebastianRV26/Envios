@@ -14,10 +14,19 @@ import javax.swing.DefaultListModel;
  * @author Sebas
  */
 public class Metodos {
+    
+    public static Metodos instance = null;
+    public static Metodos getInstance(){
+        if(instance == null){
+            instance = new Metodos();
+        }
+        return instance;
+    }
+    
     DefaultListModel<String> listModel = new DefaultListModel<>();
     
-    Ciudad grafo;
-
+    public Ciudad grafo;
+    
     public String insertarVertices(String nombre) {
         Ciudad nuevo = new Ciudad(nombre, false);
         if (grafo == null) {
@@ -40,9 +49,9 @@ public class Metodos {
         return null;
     }
 
-    public String insertarArco(Ciudad origen, Ciudad destino, int peso) {
+    public String insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
         if (buscar(origen, destino) == null) {
-            Camino nuevo = new Camino(peso);
+            Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax, peso);
             nuevo.destino = destino;
             if (origen.sigA == null) {
                 origen.sigA = nuevo;
@@ -107,6 +116,26 @@ public class Metodos {
     }
     ant.sigV = verticePorEliminar.sigV;
     return true;
+    }
+    
+    public void amplitud(Ciudad grafo)// metodo para imprimir el inicio en amplitud
+    {
+        if (grafo == null) {
+            System.out.println("No hay grafo");
+        } else {
+            Ciudad temp = grafo;
+            while (temp != null) {
+                listModel.addElement("Vertice: " + temp.nombre);
+                Camino aux = temp.sigA;
+                while (aux != null) {
+                    //listModel.addElement("Peso: " + aux.peso);
+                    listModel.addElement("Destino: " + aux.destino.nombre);
+                    aux = aux.sigA;
+                }
+                listModel.addElement("-----------");
+                temp = temp.sigV;
+            }
+        }
     }
     
     public void quitarMarca(){

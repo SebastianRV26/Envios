@@ -8,6 +8,7 @@ package Main;
 import Classes.Pedidos;
 import Classes.Usuario;
 import Methods.Arbol;
+import Frames.MainFrame;
 
 /**
  *
@@ -31,6 +32,8 @@ public class Main {
         arbol.Eliminar(arbol.raiz, 2);
         System.out.println("----------");
         arbol.imprimir(arbol.raiz);
+        MainFrame fr = new MainFrame();//Crear el FrameRegistro XD
+        fr.setVisible(true);
     }
     
 }

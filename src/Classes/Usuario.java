@@ -19,6 +19,6 @@ public class Usuario {
         this.ID = ID;
         this.nombre = nombre;
         this.tipoLicencia = tipoLicencia;
-    }    
-    
+    }
+
 }
