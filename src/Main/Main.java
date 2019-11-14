@@ -28,12 +28,23 @@ public static Usuario[] listaUsuarios = new Usuario [13];
         arbol.insertar(100,arbol.raiz,300,"fdso","fsdf");
         
         //grafo quemado
+        //ciudades 
         met.insertarVertices("Santa Clara");
         met.insertarVertices("Ciudad Quesada");
         met.insertarVertices("Aguas Zarcas");
+        met.insertarVertices("San Ramón");
+        met.insertarVertices("Cuatro Esquinas");
         met.insertarVertices("Pital");
         
-        met.insertarArco(met.buscar("Pital"), met.buscar("Aguas Zarcas"), 0, true, 0, 0);
+        //caminos
+        met.insertarArco(met.buscar("Cuatro Esquinas"), met.buscar("Pital"), 3, true, 80, 0);
+        met.insertarArco(met.buscar("Pital"), met.buscar("Aguas Zarcas"), 10, true, 100, 0);
+        met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Ciudad Quesada"), 15, true, 90, 0);
+        met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("Santa Clara"), 5, true, 80, 0);
+        met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Santa Clara"), 10, true, 70, 0);
+        met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("San Ramón"), 50, true, 120, 0);
+        //met.insertarArco(met.buscar(""), met.buscar(""), 0, true, 0, 0);
+        //met.insertarArco(met.buscar(""), met.buscar(""), 0, true, 0, 0);
         //abrir el frame
         MainFrame fr = new MainFrame();//Crear el FrameRegistro XD
         fr.setVisible(true);
