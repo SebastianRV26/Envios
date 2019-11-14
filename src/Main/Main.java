@@ -5,7 +5,9 @@
  */
 package Main;
 
+import Classes.Pedidos;
 import Classes.Usuario;
+import Methods.Arbol;
 
 /**
  *
@@ -18,8 +20,17 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Usuario[] listaUsuarios = new Usuario [50];
+        Usuario[] listaUsuarios = new Usuario [13];
+        Arbol arbol = new Arbol();
         
+        arbol.insertar(50,arbol.raiz,300,"fdso","fsdf");
+        arbol.insertar(2,arbol.raiz,86,"fdso","fsdf");
+        arbol.insertar(100,arbol.raiz,300,"fdso","fsdf");
+        
+        arbol.imprimir(arbol.raiz);
+        arbol.Eliminar(arbol.raiz, 2);
+        System.out.println("----------");
+        arbol.imprimir(arbol.raiz);
     }
     
 }

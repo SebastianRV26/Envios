@@ -10,11 +10,12 @@ package Classes;
  * @author pache
  */
 public class Pedidos {
-    int id;
-    int peso;
-    String destino;
-    String origen;
-    Pedidos sig;
+    public int id;
+    public int peso;
+    public String destino;
+    public String origen;
+    public Pedidos der;
+    public Pedidos izq;
 
     public Pedidos(int id, int peso, String destino, String origen) {
         this.id = id;
