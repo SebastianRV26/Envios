@@ -15,6 +15,8 @@ import javax.swing.DefaultListModel;
  */
 public class Metodos {
     
+    DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
+    
     public static Metodos instance = null;
     public static Metodos getInstance(){
         if(instance == null){
@@ -118,6 +120,20 @@ public class Metodos {
     return true;
     }
     
+    public void profundidad(Ciudad aux){ 
+        if(aux != null && !aux.marca){
+            aux.marca = true;
+            Camino auxA = aux.sigA;
+            while(auxA != null){
+                LISTMODEL.addElement("Destino: " + auxA.destino.nombre);
+                LISTMODEL.addElement("Peso: " + auxA.peso);
+                LISTMODEL.addElement("================================");
+                profundidad(auxA.destino);
+                auxA = auxA.sigA;
+            }
+        }
+    }
+    
     public void amplitud(Ciudad grafo)// metodo para imprimir el inicio en amplitud
     {
         if (grafo == null) {
@@ -138,6 +154,32 @@ public class Metodos {
         }
     }
     
+    String rc="";
+    int minRC=0;
+    boolean existe=false;
+    void rutaCorta(Ciudad origen, Ciudad destino, String ruta, int dist) {
+        if ((origen == null) || (origen.marca == true)) {
+            return;
+        }
+        if (origen == destino) {
+            System.out.println("Ruta: " + ruta + destino.nombre);
+            System.out.println("Con una distancia de: " + dist);
+
+            if ((rc == "") || (minRC > dist)) {
+                rc = ruta + destino.nombre;
+                minRC = dist;
+            }
+            existe = true;
+            return;
+        }
+        origen.marca = true;
+        Camino a = origen.sigA;
+        while (a != null) {
+            rutaCorta(a.destino, destino, ruta + origen.nombre, dist + a.distancia);
+            a = a.sigA;
+        }
+        origen.marca = false;
+    }
     public void quitarMarca(){
         Ciudad aux = grafo;
         while (aux!=null){

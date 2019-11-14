@@ -252,6 +252,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         // TODO add your handling code here:
+        UsersFrame fr = new UsersFrame();
+        fr.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAddUserActionPerformed
 
     private void btnConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultActionPerformed
