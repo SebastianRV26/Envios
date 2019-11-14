@@ -19,6 +19,7 @@ public class Main {
 public static Usuario[] listaUsuarios = new Usuario [13];
 
     public static void main(String[] args) {  
+        System.out.println("hola");
         Metodos met = Metodos.getInstance();
         //arbol quemado
         Arbol arbol = new Arbol();
