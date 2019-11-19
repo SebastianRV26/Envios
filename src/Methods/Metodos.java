@@ -16,7 +16,8 @@ import javax.swing.DefaultListModel;
 public class Metodos {
 
     public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
-
+    public DefaultListModel<String> listModelRutaCortaDistancia = new DefaultListModel<>();
+    
     public static Metodos instance = null;
 
     public static Metodos getInstance() {
@@ -55,13 +56,13 @@ public class Metodos {
         return null;
     }
 
-    public boolean insertarArco2(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
-        return insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax, peso);
+    public boolean insertarArco2(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax) {
+        return insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax);
     }
 
-    public boolean insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
+    public boolean insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax) {
         if (buscar(origen, destino) == null) {
-            Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax, peso);
+            Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax);
             nuevo.destino = destino;
             if (origen.sigA == null) {
                 origen.sigA = nuevo;
@@ -70,7 +71,7 @@ public class Metodos {
                 origen.sigA.antA = nuevo;
                 origen.sigA = nuevo;
             }
-            insertarArco2(destino, origen, distancia, pasoVehiculosPesados, velMax, peso);
+            insertarArco2(destino, origen, distancia, pasoVehiculosPesados, velMax);
             return true;
         }
         return false;
@@ -175,13 +176,13 @@ public class Metodos {
     int minRC = 0;
     boolean existe = false;
 
-    void rutaCorta(Ciudad origen, Ciudad destino, String ruta, int dist) {
+    public void rutaCorta(Ciudad origen, Ciudad destino, String ruta, int dist) {
         if ((origen == null) || (origen.marca == true)) {
             return;
         }
         if (origen == destino) {
-            System.out.println("Ruta: " + ruta + destino.nombre);
-            System.out.println("Con una distancia de: " + dist);
+            listModelRutaCortaDistancia.addElement("Ruta: " + ruta + destino.nombre);
+            listModelRutaCortaDistancia.addElement("Con una distancia de: " + dist);
 
             if ((rc.equals("")) || (minRC > dist)) {
                 rc = ruta + destino.nombre;

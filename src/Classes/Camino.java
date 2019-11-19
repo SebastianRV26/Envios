@@ -14,14 +14,12 @@ public class Camino {
     public Ciudad destino;   //Como es un grafo multilista, para hacer referencia al destino
     public int distancia;         //Peso del arco
     public boolean pasoVehiculosPesados; //true permitido, false no permitido
-    public int peso;
     public int velMax; //velocidad máxima
 
-    public Camino(Ciudad destino, int distancia, boolean pasoVehiculosPesados, int peso, int velMax) {
+    public Camino(Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax) {
         this.destino = destino;
         this.distancia = distancia;
         this.pasoVehiculosPesados = pasoVehiculosPesados;
-        this.peso = peso;
         this.velMax = velMax;
     }
 }
