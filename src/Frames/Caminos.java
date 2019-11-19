@@ -5,6 +5,7 @@
  */
 package Frames;
 
+import Classes.Camino;
 import Classes.Ciudad;
 import Methods.Metodos;
 import javax.swing.JOptionPane;
@@ -23,6 +24,10 @@ public class Caminos extends javax.swing.JFrame {
     }
 
     Metodos met = Metodos.getInstance();
+    Camino roadToEdit=null; //camino actual (para editar )
+    Camino roadToEdit2=null;
+    Camino roadToDelete=null;
+    Camino roadToDelete2=null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +39,7 @@ public class Caminos extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnAddRoad = new javax.swing.JButton();
@@ -53,11 +59,11 @@ public class Caminos extends javax.swing.JFrame {
         btnBefore = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        btnAddRoad1 = new javax.swing.JButton();
+        btnEditRoad = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -70,11 +76,11 @@ public class Caminos extends javax.swing.JFrame {
         btnSearchRoad = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        btnAddRoad2 = new javax.swing.JButton();
+        btnDeleteRoad = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -216,10 +222,10 @@ public class Caminos extends javax.swing.JFrame {
 
         jLabel11.setText("Editar");
 
-        btnAddRoad1.setText("Editar");
-        btnAddRoad1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditRoad.setText("Editar");
+        btnEditRoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddRoad1ActionPerformed(evt);
+                btnEditRoadActionPerformed(evt);
             }
         });
 
@@ -251,6 +257,11 @@ public class Caminos extends javax.swing.JFrame {
         jRadioButton4.setText("Ligero");
 
         btnSearchRoad.setText("Buscar");
+        btnSearchRoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchRoadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -272,16 +283,16 @@ public class Caminos extends javax.swing.JFrame {
                                         .addComponent(jLabel11))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(29, 29, 29)
-                                        .addComponent(btnAddRoad1)))
+                                        .addComponent(btnEditRoad)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel12)
                             .addGap(18, 18, 18)
-                            .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
@@ -315,11 +326,11 @@ public class Caminos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchRoad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -340,17 +351,17 @@ public class Caminos extends javax.swing.JFrame {
                     .addComponent(jLabel17)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddRoad1))
+                .addComponent(btnEditRoad))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel18.setText("Eliminar");
 
-        btnAddRoad2.setText("Eliminar");
-        btnAddRoad2.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteRoad.setText("Eliminar");
+        btnDeleteRoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddRoad2ActionPerformed(evt);
+                btnDeleteRoadActionPerformed(evt);
             }
         });
 
@@ -360,6 +371,7 @@ public class Caminos extends javax.swing.JFrame {
 
         jLabel21.setText("Distancia");
 
+        jTextField7.setEditable(false);
         jTextField7.setToolTipText("");
         jTextField7.setName(""); // NOI18N
 
@@ -369,20 +381,26 @@ public class Caminos extends javax.swing.JFrame {
 
         jLabel24.setText("Velocidad máxima");
 
+        jTextField8.setEditable(false);
         jTextField8.setToolTipText("");
         jTextField8.setName(""); // NOI18N
 
+        jTextField9.setEditable(false);
         jTextField9.setToolTipText("");
         jTextField9.setName(""); // NOI18N
 
-        buttonGroup2.add(jRadioButton5);
-        jRadioButton5.setSelected(true);
+        buttonGroup3.add(jRadioButton5);
         jRadioButton5.setText("Pesado");
 
-        buttonGroup2.add(jRadioButton6);
+        buttonGroup3.add(jRadioButton6);
         jRadioButton6.setText("Ligero");
 
         btnSearchRoad1.setText("Buscar");
+        btnSearchRoad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchRoad1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -400,12 +418,12 @@ public class Caminos extends javax.swing.JFrame {
                                 .addGap(94, 94, 94))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(32, 32, 32))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(32, 32, 32))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,7 +457,7 @@ public class Caminos extends javax.swing.JFrame {
                         .addComponent(jLabel18))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(btnAddRoad2)))
+                        .addComponent(btnDeleteRoad)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -450,11 +468,11 @@ public class Caminos extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchRoad1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -475,7 +493,7 @@ public class Caminos extends javax.swing.JFrame {
                     .addComponent(jLabel24)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddRoad2)
+                .addComponent(btnDeleteRoad)
                 .addContainerGap())
         );
 
@@ -555,13 +573,108 @@ public class Caminos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Favor seleccionar un camino válido!");
     }//GEN-LAST:event_btnAddRoadActionPerformed
 
-    private void btnAddRoad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRoad1ActionPerformed
+    private void btnEditRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRoadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddRoad1ActionPerformed
+        if (roadToEdit!=null){
+            try{
+                roadToEdit.distancia = Integer.parseInt(jTextField4.getText());
+                roadToEdit.peso = Integer.parseInt(jTextField5.getText());
+                roadToEdit.velMax = Integer.parseInt(jTextField6.getText());
+                roadToEdit2.distancia = Integer.parseInt(jTextField4.getText());
+                roadToEdit2.peso = Integer.parseInt(jTextField5.getText());
+                roadToEdit2.velMax = Integer.parseInt(jTextField6.getText());
+                if (jRadioButton3.isSelected()){
+                    roadToEdit.pasoVehiculosPesados=true;
+                    roadToEdit2.pasoVehiculosPesados=true;
+                }else{
+                    roadToEdit.pasoVehiculosPesados=false;
+                    roadToEdit2.pasoVehiculosPesados=false;
+                }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Favor ingresar números");
+                return;
+            }
+            roadToEdit=null;
+            roadToEdit2=null;
+            llenarCombobox();
+            JOptionPane.showMessageDialog(null, "Editado correctamente");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jRadioButton3.setSelected(false);
+            jRadioButton4.setSelected(false);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Favor buscar un camino");
+    }//GEN-LAST:event_btnEditRoadActionPerformed
 
-    private void btnAddRoad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRoad2ActionPerformed
+    private void btnDeleteRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteRoadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddRoad2ActionPerformed
+        try{
+            if(met.eliminaArco(met.buscar(jComboBox5.getSelectedItem().toString()), met.buscar(jComboBox6.getSelectedItem().toString()))){
+                met.eliminaArco(met.buscar(jComboBox6.getSelectedItem().toString()), met.buscar(jComboBox5.getSelectedItem().toString()));
+                JOptionPane.showMessageDialog(null, "Eliminado correctamente");
+                jTextField7.setText("");
+                jTextField8.setText("");
+                jTextField9.setText("");
+                jRadioButton5.setSelected(false);
+                jRadioButton6.setSelected(false);
+                llenarCombobox();
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "El camino NO ha sido eliminado correctamente");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "El camino NO ha sido eliminado correctamente");
+        }
+    }//GEN-LAST:event_btnDeleteRoadActionPerformed
+
+    private void btnSearchRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchRoadActionPerformed
+        // TODO add your handling code here:
+        String cmb1 = jComboBox3.getSelectedItem().toString();
+        String cmb2 = jComboBox4.getSelectedItem().toString();
+        if (cmb1!=null && cmb2!=null && cmb1.equals(cmb2)==false){
+            roadToEdit = met.buscar(met.buscar(cmb1), met.buscar(cmb2));
+            roadToEdit2 = met.buscar(met.buscar(cmb2), met.buscar(cmb1));
+            if (roadToEdit!=null){
+                jTextField4.setText(""+roadToEdit.distancia);
+                if (roadToEdit.pasoVehiculosPesados==true){
+                    jRadioButton3.setSelected(true);
+                }else{
+                    jRadioButton4.setSelected(true);
+                }
+                jTextField5.setText(""+roadToEdit.peso);
+                jTextField6.setText(""+roadToEdit.velMax);
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "No existe tal camino");
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Ingrese ciudades válidas");
+    }//GEN-LAST:event_btnSearchRoadActionPerformed
+
+    private void btnSearchRoad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchRoad1ActionPerformed
+        // TODO add your handling code here:
+        String cmb1 = jComboBox5.getSelectedItem().toString();
+        String cmb2 = jComboBox6.getSelectedItem().toString();
+        if (cmb1!=null && cmb2!=null && cmb1.equals(cmb2)==false){
+            roadToDelete = met.buscar(met.buscar(cmb1), met.buscar(cmb2));
+            roadToDelete2 = met.buscar(met.buscar(cmb2), met.buscar(cmb1));
+            if (roadToDelete!=null){
+                jTextField7.setText(""+roadToDelete.distancia);
+                if (roadToDelete.pasoVehiculosPesados==true){
+                    jRadioButton5.setSelected(true);
+                }else{
+                    jRadioButton6.setSelected(true);
+                }
+                jTextField8.setText(""+roadToDelete.peso);
+                jTextField9.setText(""+roadToDelete.velMax);
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Camino no encontrado");
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Ingrese ciudades válidas");
+    }//GEN-LAST:event_btnSearchRoad1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,19 +713,20 @@ public class Caminos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddRoad;
-    private javax.swing.JButton btnAddRoad1;
-    private javax.swing.JButton btnAddRoad2;
     private javax.swing.JButton btnBefore;
+    private javax.swing.JButton btnDeleteRoad;
+    private javax.swing.JButton btnEditRoad;
     private javax.swing.JButton btnSearchRoad;
     private javax.swing.JButton btnSearchRoad1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -657,10 +771,18 @@ public class Caminos extends javax.swing.JFrame {
     public void llenarCombobox() {
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
+        jComboBox3.removeAllItems();
+        jComboBox4.removeAllItems();
+        jComboBox5.removeAllItems();
+        jComboBox6.removeAllItems();
         Ciudad aux = met.grafo;
         while (aux != null) {
             jComboBox1.addItem(aux.nombre);
             jComboBox2.addItem(aux.nombre);
+            jComboBox3.addItem(aux.nombre);
+            jComboBox4.addItem(aux.nombre);
+            jComboBox5.addItem(aux.nombre);
+            jComboBox6.addItem(aux.nombre);
             aux = aux.sigV;
         }
     }
