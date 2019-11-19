@@ -7,6 +7,7 @@ package Methods;
 
 import Classes.Camino;
 import Classes.Ciudad;
+import Classes.Pedidos;
 import javax.swing.DefaultListModel;
 
 /**
@@ -16,7 +17,6 @@ import javax.swing.DefaultListModel;
 public class Metodos {
 
     public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
-    public DefaultListModel<String> listModelRutaCortaDistancia = new DefaultListModel<>();
     
     public static Metodos instance = null;
 
@@ -172,18 +172,86 @@ public class Metodos {
         }
     }
 
-    String rc = "";
-    int minRC = 0;
-    boolean existe = false;
+    public String rc = "";
+    public int minRC = 0;
+    public boolean existe = false;
 
     public void rutaCorta(Ciudad origen, Ciudad destino, String ruta, int dist) {
         if ((origen == null) || (origen.marca == true)) {
             return;
         }
         if (origen == destino) {
-            listModelRutaCortaDistancia.addElement("Ruta: " + ruta + destino.nombre);
-            listModelRutaCortaDistancia.addElement("Con una distancia de: " + dist);
-
+            //listModelRutaCortaDistancia.addElement("Ruta: " + ruta + destino.nombre);
+            //listModelRutaCortaDistancia.addElement("Con una distancia de: " + dist);
+            if ((rc.equals("")) || (minRC > dist)) {
+                rc = ruta + destino.nombre;
+                minRC = dist;
+            }
+            existe = true;
+            return;
+        }
+        origen.marca = true;
+        Camino a = origen.sigA;
+        while (a != null) {
+            rutaCorta(a.destino, destino, ruta + origen.nombre, dist + a.distancia);
+            a = a.sigA;
+        }
+        origen.marca = false;
+    }
+    /*
+    public void rutaCortaDistancia(Ciudad origen, Ciudad destino, String ruta, int dist) {
+        if ((origen == null) || (origen.marca == true)) {
+            return;
+        }
+        if (origen == destino) {
+            //listModelRutaCortaDistancia.addElement("Ruta: " + ruta + destino.nombre);
+            //listModelRutaCortaDistancia.addElement("Con una distancia de: " + dist);
+            if ((rc.equals("")) || (minRC > dist)) {
+                rc = ruta + " / " +destino.nombre;
+                minRC = dist;
+            }
+            existe = true;
+            return;
+        }
+        origen.marca = true;
+        Camino a = origen.sigA;
+        while (a != null) {
+            rutaCorta(a.destino, destino, ruta+" / " + origen.nombre, dist + a.distancia);
+            a = a.sigA;
+        }
+        origen.marca = false;
+    }
+   */ 
+    public void rutaCortaDistancia(Ciudad origen, Ciudad destino, String ruta, int dist, Camino calle, Pedidos pedido){
+        if ((origen == null) || (origen.marca == true)){
+            return;
+        } 
+        if (origen == destino){  
+            if((rc.equals("")) || (minRC > dist) ) {
+                rc = ruta + " / "+ destino.nombre;
+                minRC = dist;
+            }  
+            existe=true;
+            return;
+        }
+        origen.marca = true;
+        Camino a = origen.sigA;
+        while (a != null) {
+            Camino camino = buscar(a.destino, destino);
+            //if (camino!=null && camino.pasoVehiculosPesados==pedido.)
+            rutaCortaDistancia(a.destino, destino, ruta +" / "+ origen.nombre, dist + a.distancia, a, pedido);
+            a = a.sigA;
+        }
+        origen.marca = false;
+    }
+    
+    public void rutaCortaTiempo(Ciudad origen, Ciudad destino, String ruta, int dist) {
+        if ((origen == null) || (origen.marca == true)) {
+            return;
+        }
+        if (origen == destino) {
+            //listModelRutaCortaDistancia.addElement("Ruta: " + ruta + destino.nombre);
+            //listModelRutaCortaDistancia.addElement("Con una distancia de: " + dist);
             if ((rc.equals("")) || (minRC > dist)) {
                 rc = ruta + destino.nombre;
                 minRC = dist;

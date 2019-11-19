@@ -9,6 +9,7 @@ import Classes.Ciudad;
 import Methods.Arbol;
 import Methods.Hashtable;
 import Methods.Metodos;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -41,9 +42,7 @@ public class Consults extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         printDistancy = new javax.swing.JButton();
         printShortRuteTime = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -83,9 +82,7 @@ public class Consults extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Origen");
-
-        jLabel6.setText("Destino");
+        jLabel6.setText("Pedido");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -101,31 +98,24 @@ public class Consults extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(printDistancy)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(printShortRuteTime))
+                        .addComponent(printShortRuteTime)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
+                        .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox2, 0, 150, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(printDistancy)
                     .addComponent(printShortRuteTime))
@@ -350,18 +340,34 @@ public class Consults extends javax.swing.JFrame {
 
     private void printDistancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printDistancyActionPerformed
         // TODO add your handling code here:
-        met.listModelRutaCortaDistancia.clear();
-        met.rutaCorta(met.buscar(jComboBox2.getSelectedItem().toString()), 
-                met.buscar(jComboBox3.getSelectedItem().toString()), "", 0);
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        met.rc = "";
+        met.minRC = 0;
+        met.existe=false;
+        //met.rutaCortaDistancia(met.buscar(jComboBox2.getSelectedItem().toString()), 
+        //        met.buscar(jComboBox3.getSelectedItem().toString()), "", 0);
         
+        if (met.existe) {
+            listModel.addElement("Ruta: " + met.rc);
+            listModel.addElement("Con una distancia de: " + met.minRC);
+        }
+        jList1.setModel(listModel);
     }//GEN-LAST:event_printDistancyActionPerformed
 
     private void printShortRuteTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printShortRuteTimeActionPerformed
         // TODO add your handling code here:
-        met.listModelRutaCortaDistancia.clear();
-        met.rutaCorta(met.buscar(jComboBox2.getSelectedItem().toString()), 
-                met.buscar(jComboBox3.getSelectedItem().toString()), "", 0);
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        met.rc = "";
+        met.minRC = 0;
+        met.existe=false;
+        //met.rutaCortaTiempo(met.buscar(jComboBox2.getSelectedItem().toString()), 
+                //met.buscar(jComboBox3.getSelectedItem().toString()), "", 0);
         
+        if (met.existe) {
+            listModel.addElement("Ruta: " + met.rc);
+            listModel.addElement("Con una distancia de: " + met.minRC);
+        }
+        jList1.setModel(listModel);
     }//GEN-LAST:event_printShortRuteTimeActionPerformed
 
     /**
@@ -403,12 +409,10 @@ public class Consults extends javax.swing.JFrame {
     private javax.swing.JButton btnBefore;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
@@ -427,12 +431,9 @@ public class Consults extends javax.swing.JFrame {
     public void llenarCombobox(){
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
-        jComboBox3.removeAllItems();
         Ciudad aux = met.grafo;
         while(aux!=null){
             jComboBox1.addItem(aux.nombre);
-            jComboBox2.addItem(aux.nombre);
-            jComboBox3.addItem(aux.nombre);
             aux = aux.sigV;
         }
     }
