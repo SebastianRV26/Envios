@@ -5,6 +5,7 @@
  */
 package Main;
 
+import Classes.Camino;
 import Classes.Pedidos;
 import Classes.Usuario;
 import Methods.Arbol;
@@ -46,12 +47,13 @@ public static Usuario[] listaUsuarios = new Usuario [13];
         met.insertarVertices("Pital");
         
         //caminos
-        met.insertarArco(met.buscar("Cuatro Esquinas"), met.buscar("Pital"), 3, false, 80, 0);
-        met.insertarArco(met.buscar("Pital"), met.buscar("Aguas Zarcas"), 10, true, 100, 0);
-        met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Ciudad Quesada"), 15, true, 90, 0);
-        met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("Santa Clara"), 5, true, 80, 0);
-        met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Santa Clara"), 10, true, 70, 0);
-        met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("San Ramón"), 50, true, 120, 0);
+        met.insertarArco(met.buscar("Cuatro Esquinas"), met.buscar("Pital"), 3, false, 80);
+        met.buscar(met.buscar("Cuatro Esquinas"), met.buscar("Pital"));
+        met.insertarArco(met.buscar("Pital"), met.buscar("Aguas Zarcas"), 10, true, 100);
+        met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Ciudad Quesada"), 15, true, 90);
+        met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("Santa Clara"), 5, true, 80);
+        met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Santa Clara"), 10, true, 70);
+        met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("San Ramón"), 50, true, 120);
         //met.insertarArco(met.buscar(""), met.buscar(""), 0, true, 0, 0);
         //met.insertarArco(met.buscar(""), met.buscar(""), 0, true, 0, 0);
         //abrir el frame
