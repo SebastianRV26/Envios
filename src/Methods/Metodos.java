@@ -14,30 +14,34 @@ import javax.swing.DefaultListModel;
  * @author Sebas
  */
 public class Metodos {
-    
+
     public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
-    
+
     public static Metodos instance = null;
-    public static Metodos getInstance(){
-        if(instance == null){
+
+    public static Metodos getInstance() {
+        if (instance == null) {
             instance = new Metodos();
         }
         return instance;
     }
-    
+
     public DefaultListModel<String> listModel = new DefaultListModel<>();
-    
+
     public Ciudad grafo;
-    
-    public String insertarVertices(String nombre) {
-        Ciudad nuevo = new Ciudad(nombre, false);
-        if (grafo == null) {
+
+    public boolean insertarVertices(String nombre) {
+        if (buscar(nombre) == null) {
+            Ciudad nuevo = new Ciudad(nombre, false);
+            if (grafo == null) {
+                grafo = nuevo;
+                return true;
+            }
+            nuevo.sigV = grafo;
             grafo = nuevo;
-            return "Insertado";
+            return true;
         }
-        nuevo.sigV = grafo;
-        grafo = nuevo;
-        return "";
+        return false;
     }
 
     public Ciudad buscar(String nombre) {
@@ -51,11 +55,11 @@ public class Metodos {
         return null;
     }
 
-    public String insertarArco2(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
+    public boolean insertarArco2(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
         return insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax, peso);
     }
-    
-    public String insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
+
+    public boolean insertarArco(Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax, int peso) {
         if (buscar(origen, destino) == null) {
             Camino nuevo = new Camino(destino, distancia, pasoVehiculosPesados, velMax, peso);
             nuevo.destino = destino;
@@ -67,9 +71,9 @@ public class Metodos {
                 origen.sigA = nuevo;
             }
             insertarArco2(destino, origen, distancia, pasoVehiculosPesados, velMax, peso);
-            return "Insertado";
+            return true;
         }
-        return "No se pueden repetir arcos";
+        return false;
     }
 
     public Camino buscar(Ciudad origen, Ciudad destino) {
@@ -84,52 +88,54 @@ public class Metodos {
         }
         return null;
     }
-    
-    public boolean eliminaArco (Ciudad origen, Ciudad destino) {
+
+    public boolean eliminaArco(Ciudad origen, Ciudad destino) {
         //origen destino y elimina el arco si existe (un arco directo)
         //en la interfaz primero buscar vertice 
-        
-        Camino aux = buscar (origen, destino);
-        if (aux != null){
-            if (origen.sigA == aux){ //es el primero
+
+        Camino aux = buscar(origen, destino);
+        if (aux != null) {
+            if (origen.sigA == aux) { //es el primero
                 origen.sigA = aux.sigA;
-                if (origen.sigA!=null){ //si hay otro nodo
-                    aux.sigA.antA = null; 
+                if (origen.sigA != null) { //si hay otro nodo
+                    aux.sigA.antA = null;
                 }
                 return true;
             }//si no es el primero
             aux.antA.sigA = aux.sigA;
-            if (aux.sigA!=null){
+            if (aux.sigA != null) {
                 aux.sigA.antA = aux.antA;
             }
             return true;
         }
         return false;
     }
-    public boolean eliminarVertice (Ciudad verticePorEliminar){
-    //antes de eiliminar un vertice tiene que eliminar los arcos que apuntan a este   
-    Ciudad aux = grafo;
-    Ciudad ant = grafo;
-    while (aux!=null){ //se eliminan los arcos que apunten al vertice por eliminar
-        eliminaArco(aux, verticePorEliminar);
-        
-        //para el anterior
-        if (aux.sigV.equals(verticePorEliminar))
-            ant = aux;
-        aux = aux.sigV;
-    }//eliminar el vertice
-    if (verticePorEliminar.equals(grafo)){ //si es el primero
-        grafo = verticePorEliminar.sigV;
+
+    public boolean eliminarVertice(Ciudad verticePorEliminar) {
+        //antes de eiliminar un vertice tiene que eliminar los arcos que apuntan a este   
+        Ciudad aux = grafo;
+        Ciudad ant = grafo;
+        while (aux != null) { //se eliminan los arcos que apunten al vertice por eliminar
+            eliminaArco(aux, verticePorEliminar);
+
+            //para el anterior
+            if (aux.sigV!=null && aux.sigV.equals(verticePorEliminar)) {
+                ant = aux;
+            }
+            aux = aux.sigV;
+        }//eliminar el vertice
+        if (verticePorEliminar.equals(grafo)) { //si es el primero
+            grafo = verticePorEliminar.sigV;
+        }
+        ant.sigV = verticePorEliminar.sigV;
+        return true;
     }
-    ant.sigV = verticePorEliminar.sigV;
-    return true;
-    }
-    
-    public void profundidad(Ciudad aux){ 
-        if(aux != null && !aux.marca){
+
+    public void profundidad(Ciudad aux) {
+        if (aux != null && !aux.marca) {
             aux.marca = true;
             Camino auxA = aux.sigA;
-            while(auxA != null){
+            while (auxA != null) {
                 LISTMODEL.addElement("Destino: " + auxA.destino.nombre);
                 LISTMODEL.addElement("Peso: " + auxA.peso);
                 LISTMODEL.addElement("================================");
@@ -138,7 +144,7 @@ public class Metodos {
             }
         }
     }
-    
+
     public void amplitud(Ciudad grafo)// metodo para imprimir el inicio en amplitud
     {
         if (grafo == null) {
@@ -158,10 +164,11 @@ public class Metodos {
             }
         }
     }
-    
-    String rc="";
-    int minRC=0;
-    boolean existe=false;
+
+    String rc = "";
+    int minRC = 0;
+    boolean existe = false;
+
     void rutaCorta(Ciudad origen, Ciudad destino, String ruta, int dist) {
         if ((origen == null) || (origen.marca == true)) {
             return;
@@ -185,11 +192,21 @@ public class Metodos {
         }
         origen.marca = false;
     }
-    public void quitarMarca(){
+
+    public void quitarMarca() {
         Ciudad aux = grafo;
-        while (aux!=null){
-            aux.marca=false;
+        while (aux != null) {
+            aux.marca = false;
             aux = aux.sigV;
         }
     }
+    
+    public boolean modificarVertice(Ciudad city, String nombre){
+        if (buscar(nombre)==null){
+            city.nombre=nombre;
+            return true;
+        }
+        return false;
+    }
+    
 }
