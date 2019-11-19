@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  */
 public class Arbol {
    public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
-    boolean bandera = false;
+    public boolean bandera = false;
     int alt =0;
     int hojas = 0;
     int nodos = 0;
@@ -28,8 +28,8 @@ public class Arbol {
     }
     
     public Pedidos raiz;
-    public boolean insertar (int id, Pedidos aux,int peso,String origen,String destino){
-        Pedidos nuevo = new Pedidos(id,peso,destino,origen);
+    public boolean insertar (int id, Pedidos aux,int peso,String origen,String destino,String conductor){
+        Pedidos nuevo = new Pedidos(id,peso,destino,origen,conductor);
         if (raiz==null){
             raiz = nuevo;
             bandera = true;
@@ -45,14 +45,14 @@ public class Arbol {
                 bandera = true;
                 return true;
             }
-            insertar (id, aux.izq,peso,origen,destino);
+            insertar (id, aux.izq,peso,origen,destino,conductor);
         }else{
             if (aux.der==null){
                 aux.der = nuevo;
                 bandera = true;
                 return true;
             }
-            insertar(id, aux.der,peso,origen,destino);
+            insertar(id, aux.der,peso,origen,destino,conductor);
         }
       return bandera;
     }
@@ -60,8 +60,11 @@ public class Arbol {
     public void imprimir(Pedidos aux){
         if (aux == null){return;}
             imprimir(aux.izq);
-            LISTMODEL.addElement("id " + aux.id);
-            LISTMODEL.addElement("Peso " + aux.peso);
+            LISTMODEL.addElement("ID: " + aux.id);
+            LISTMODEL.addElement("Usuario: " + aux.conductor);
+            LISTMODEL.addElement("Origen: "+aux.origen);
+            LISTMODEL.addElement("Destino: "+aux.destino);
+            LISTMODEL.addElement("Peso: " + aux.peso);
             LISTMODEL.addElement("------------------");
             imprimir (aux.der);   
     }
@@ -168,5 +171,32 @@ public class Arbol {
             return false;
         }
     
+    public Pedidos modificar(int id,Pedidos aux,String origen,String destino,int peso){
+        if (raiz == null){
+            return null;
+        }
+        if (id<aux.id){
+            if(aux.izq == null){
+                return null;
+            }
+            
+             modificar(id,aux.izq,origen,destino,peso);   
+        }
+        if (id>aux.id){
+            if(aux.der == null){
+                return null;
+            }
+            
+            modificar(id,aux.der,origen,destino,peso);
+        }
+        if(aux.id == id){
+                aux.destino = destino;
+                aux.origen = origen;
+                aux.peso = peso;
+                bandera = true;
+                return aux;
+            }
+        return null;
+    }
     
 }

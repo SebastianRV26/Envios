@@ -7,6 +7,7 @@ package Frames;
 
 import Classes.Ciudad;
 import Methods.Arbol;
+import Methods.Hashtable;
 import Methods.Metodos;
 
 /**
@@ -16,6 +17,7 @@ import Methods.Metodos;
 public class Consults extends javax.swing.JFrame {
     Arbol arbol = Arbol.getInstance();
     Metodos met = Metodos.getInstance();
+    Hashtable hash = Hashtable.getInstance();
     /**
      * Creates new form Consults
      */
@@ -282,6 +284,9 @@ public class Consults extends javax.swing.JFrame {
 
     private void printHashTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printHashTableActionPerformed
         // TODO add your handling code here:
+        hash.LISTMODEL2.clear();;
+        hash.print();
+        jList1.setModel(hash.LISTMODEL2);
     }//GEN-LAST:event_printHashTableActionPerformed
 
     private void printProfundidadGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printProfundidadGrafoActionPerformed

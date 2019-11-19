@@ -14,14 +14,16 @@ public class Pedidos {
     public int peso;
     public String destino;
     public String origen;
+    public String conductor;
     public Pedidos der;
     public Pedidos izq;
 
-    public Pedidos(int id, int peso, String destino, String origen) {
+    public Pedidos(int id, int peso, String destino, String origen,String conductor) {
         this.id = id;
         this.peso = peso;
         this.destino = destino;
         this.origen = origen;
+        this.conductor = conductor;
     }
 
     

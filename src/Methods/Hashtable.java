@@ -6,6 +6,7 @@
 package Methods;
 import Main.Main;
 import Classes.Usuario;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author pache
  */
 public class Hashtable {
+    public DefaultListModel<String> LISTMODEL2 = new DefaultListModel<>();
     public static Hashtable instance = null;
     public static Hashtable getInstance(){
         if(instance == null){
@@ -72,34 +74,82 @@ public class Hashtable {
         return aux;
        
     }
-    /**
-     * Print HashTable in console
-     */
+   
     public void print(){
         for (int i = 0; i < Main.listaUsuarios.length; i++) {
-            System.out.print("Indice: "+i+"[");
             for (Usuario aux = Main.listaUsuarios[i]; aux != null; aux = aux.sig) {
-                System.out.print(aux.ID+",");
+                LISTMODEL2.addElement("Nombre: " + aux.nombre);
+                LISTMODEL2.addElement("ID: " + aux.ID);
+                LISTMODEL2.addElement("Licencia: " + aux.tipoLicencia);
+                LISTMODEL2.addElement("---------------------------");
             }
-            System.out.print("]\n");
         }
          
     }
-    
-    /**
-     * Create a new Table model with all users.
-     * @param model table model where the data going inserted
-     * @return DefaulsTableModel with users to use in table component.
-     */
-    public void getModel(DefaultTableModel model){
+    public boolean modificar(int id,String nombre,String licencia){
         for (int i = 0; i < Main.listaUsuarios.length; i++) {
             for (Usuario aux = Main.listaUsuarios[i]; aux != null; aux = aux.sig) {
-                Object[] row =new Object[3];
-                row[0] = aux.ID;
-                row[1] = aux.nombre;
-                row[2] = aux.tipoLicencia;
-                model.addRow(row);
-            } 
+                if(aux.ID==id){
+                    aux.nombre = nombre;
+                    aux.tipoLicencia = licencia;
+                    return true;
+                }
+            }
+    }
+        return false;
+    }
+    
+    public String delete(int number) {
+        int key = this.hash(number);
+
+        if (Main.listaUsuarios[key] == null) {
+            return null;
         }
+
+        Usuario aux = Main.listaUsuarios[key];
+
+        if (aux.sig == null) {
+            Main.listaUsuarios[key] = null;
+            return "Eliminado directo";
+        }
+
+        int index = 0;
+        while (aux != null) {
+
+            aux = aux.sig;
+            index++;
+        }
+        Usuario arrayUsers[] = new Usuario[index];
+
+        aux = Main.listaUsuarios[key];
+
+        int n = 0;
+        while (aux != null) {
+
+            if (aux.ID == number) {
+                System.out.println("Usuario Eliminado");
+
+            } else {
+                arrayUsers[n] = aux;
+                n++;
+            }
+            aux = aux.sig;
+
+        }
+
+        Main.listaUsuarios[key] = null;
+
+        for (int i = 0; i < index - 1; i++) {
+            if (arrayUsers[i].ID == number) {
+
+            } else {
+                Usuario nUser = new Usuario(arrayUsers[i].ID, arrayUsers[i].nombre, arrayUsers[i].tipoLicencia);
+                insertarUsuario(nUser);
+            }
+
+        }
+
+        return "";
+
     }
 }

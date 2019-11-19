@@ -9,6 +9,7 @@ import Classes.Pedidos;
 import Classes.Usuario;
 import Methods.Arbol;
 import Frames.MainFrame;
+import Methods.Hashtable;
 import Methods.Metodos;
 
 /**
@@ -20,12 +21,17 @@ public static Usuario[] listaUsuarios = new Usuario [13];
 
     public static void main(String[] args) {  
         Metodos met = Metodos.getInstance();
+        Hashtable hash = Hashtable.getInstance();
         //arbol quemado
         Arbol arbol = Arbol.getInstance();
         
-        arbol.insertar(50,arbol.raiz,300,"fdso","fsdf");
-        arbol.insertar(2,arbol.raiz,86,"fdso","fsdf");
-        arbol.insertar(100,arbol.raiz,300,"fdso","fsdf");
+        Usuario usuario = new Usuario(4984, "Jairo", "B4");
+        hash.insertarUsuario(usuario);
+        
+        
+        arbol.insertar(50,arbol.raiz,300,"fdso","fsdf","jairo");
+        arbol.insertar(2,arbol.raiz,86,"fdso","fsdf","jairo");
+        arbol.insertar(100,arbol.raiz,300,"fdso","fsdf","jairo");
         
         //grafo quemado
         //ciudades 
