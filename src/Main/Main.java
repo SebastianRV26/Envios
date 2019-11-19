@@ -34,6 +34,9 @@ public static Usuario[] listaUsuarios = new Usuario [13];
         arbol.insertar(2,arbol.raiz,86,"fdso","fsdf","jairo");
         arbol.insertar(100,arbol.raiz,300,"fdso","fsdf","jairo");
         
+        arbol.buscar(100, arbol.raiz);
+        Pedidos ver = arbol.variable;
+        System.out.println(ver.peso);
         //grafo quemado
         //ciudades 
         met.insertarVertices("Santa Clara");

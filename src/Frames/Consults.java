@@ -309,6 +309,7 @@ public class Consults extends javax.swing.JFrame {
     private void printTreeInOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTreeInOrdenActionPerformed
         // TODO add your handling code here:
         arbol.LISTMODEL.clear();
+        arbol.LISTMODEL.addElement("                           PEDIDOS REGISTRADOS EN EL SISTEMA");
         arbol.imprimir(arbol.raiz);
         jList1.setModel(arbol.LISTMODEL);
        

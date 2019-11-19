@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
  * @author pache
  */
 public class Arbol {
+    public Pedidos variable;
    public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
     public boolean bandera = false;
     int alt =0;
@@ -198,5 +199,27 @@ public class Arbol {
             }
         return null;
     }
-    
+    public void buscar(int id,Pedidos aux){
+        if (raiz == null){
+            variable = null;
+        }
+        if (id<aux.id){
+            if(aux.izq == null){
+                return;
+            }
+            
+             buscar(id,aux.izq);   
+        }
+        if (id>aux.id){
+            if(aux.der == null){
+                return;
+            }
+            
+            buscar(id,aux.der);
+        }
+        if(aux.id == id){
+                variable = aux;
+                return ;
+            }
+    }
 }
