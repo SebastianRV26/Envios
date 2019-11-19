@@ -94,7 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         btnAddCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/city.png"))); // NOI18N
-        btnAddCity.setText("Agregar Ciudad");
+        btnAddCity.setText("Gestionar Ciudad");
         btnAddCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddCityaddVertex(evt);
@@ -102,7 +102,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnAddPath.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/road.png"))); // NOI18N
-        btnAddPath.setText("Agregar Camino");
+        btnAddPath.setText("Gestionar Camino");
         btnAddPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddPathaddArc(evt);
@@ -110,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnAddOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/order.png"))); // NOI18N
-        btnAddOrder.setText("Crear Pedido");
+        btnAddOrder.setText("Gestionar Pedido");
         btnAddOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddOrderActionPerformed(evt);
@@ -118,7 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/driver.png"))); // NOI18N
-        btnAddUser.setText("Agregar Usuario");
+        btnAddUser.setText("Gestionar Usuario");
         btnAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddUserActionPerformed(evt);
@@ -138,12 +138,12 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(canvasContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddCity)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddPath)
@@ -153,7 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(btnAddUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsult)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,68 +178,19 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddCityaddVertex(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCityaddVertex
-        String name = JOptionPane.showInputDialog("Nombre de la ciudad");
-        met.insertarVertices(name);
-        this.canvas.setTempName(name);
+        Ciudades fr = new Ciudades();
+        fr.llenarCombobox();
+        fr.setVisible(true);
+        dispose();
+        //this.canvas.setTempName(name);
     }//GEN-LAST:event_btnAddCityaddVertex
 
     private void btnAddPathaddArc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPathaddArc
-        Ciudad origen = met.buscar(JOptionPane.showInputDialog("Nombre de la ciudad origen"));
-        if (origen==null){
-            JOptionPane.showMessageDialog(null, "Favor insertar una ciudad válida");
-            return;
-        }
-        Ciudad destino = met.buscar(JOptionPane.showInputDialog("Nombre de la ciudad destino"));
-        if (destino==null){
-            JOptionPane.showMessageDialog(null, "Favor insertar una ciudad válida");
-            return;
-        }
-        
-        String distanciaString = JOptionPane.showInputDialog("Distancia del camino:");
-        int distancia;
-        try{
-            distancia = Integer.parseInt(distanciaString);
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Favor insertar un número válido");
-            return;
-        }
-        
-        int seleccion = JOptionPane.showOptionDialog(
-        null, "El camino soporta vehículos pesados?", /*text*/ "Camino",  /*title*/ JOptionPane.YES_NO_CANCEL_OPTION,
-        JOptionPane.QUESTION_MESSAGE, /*icon*/ null, /* null para icono por defecto*/ 
-        new Object[] { "Sí", "No"},   /*null para YES, NO y CANCEL*/ "Sí"/*por defecto*/);
-        boolean pasoVehiculosPesados; 
-        if (seleccion != -1){
-            if (seleccion + 1==1){//yes
-                pasoVehiculosPesados=true;
-            }else{
-                pasoVehiculosPesados=false;
-            }
-        }else{
-            return;
-        }
-        
-        String vel = JOptionPane.showInputDialog("Velocidad máxima del camino:");
-        int velMax;
-        try{
-            velMax = Integer.parseInt(vel);
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Favor insertar un número válido");
-            return;
-        }
-        
-        String pesoString = JOptionPane.showInputDialog("Peso del camino:");
-        int peso;
-        try{
-            peso = Integer.parseInt(pesoString);
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Favor insertar un número válido");
-            return;
-        }
-        
-        met.insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax, peso);
-        //Ciudad origen, Ciudad destino, int distancia, boolean pasoVehiculosPesados, int velMax
-        //falta dibujar el camino
+        Caminos fr = new Caminos();
+        fr.llenarCombobox();
+        fr.setVisible(true);
+        dispose();
+        //met.insertarArco(origen, destino, distancia, pasoVehiculosPesados, velMax, peso);
 
     }//GEN-LAST:event_btnAddPathaddArc
 
