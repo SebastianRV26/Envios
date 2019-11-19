@@ -76,6 +76,7 @@ public class Hashtable {
     }
    
     public void print(){
+        LISTMODEL2.addElement("                          USUARIOS REGISTRADOS EN EL SISTEMA");
         for (int i = 0; i < Main.listaUsuarios.length; i++) {
             for (Usuario aux = Main.listaUsuarios[i]; aux != null; aux = aux.sig) {
                 LISTMODEL2.addElement("Nombre: " + aux.nombre);

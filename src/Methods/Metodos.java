@@ -138,6 +138,7 @@ public class Metodos {
         aux.marca = true;
         Camino auxA = aux.sigA;
         while (auxA != null) {
+            LISTMODEL.addElement("Origen: "+ aux.nombre);
             LISTMODEL.addElement("Destino: " + auxA.destino.nombre);
             if (auxA.pasoVehiculosPesados){
                 LISTMODEL.addElement("El camino es pesado");
