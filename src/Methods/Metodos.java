@@ -119,7 +119,7 @@ public class Metodos {
             eliminaArco(aux, verticePorEliminar);
 
             //para el anterior
-            if (aux.sigV!=null && aux.sigV.equals(verticePorEliminar)) {
+            if (aux.sigV != null && aux.sigV.equals(verticePorEliminar)) {
                 ant = aux;
             }
             aux = aux.sigV;
@@ -132,16 +132,22 @@ public class Metodos {
     }
 
     public void profundidad(Ciudad aux) {
-        if (aux != null && !aux.marca) {
-            aux.marca = true;
-            Camino auxA = aux.sigA;
-            while (auxA != null) {
-                LISTMODEL.addElement("Destino: " + auxA.destino.nombre);
-                LISTMODEL.addElement("Peso: " + auxA.peso);
-                LISTMODEL.addElement("================================");
-                profundidad(auxA.destino);
-                auxA = auxA.sigA;
+        if (aux == null || aux.marca) {
+            return;
+        }
+        aux.marca = true;
+        Camino auxA = aux.sigA;
+        while (auxA != null) {
+            LISTMODEL.addElement("Destino: " + auxA.destino.nombre);
+            if (auxA.pasoVehiculosPesados){
+                LISTMODEL.addElement("El camino es pesado");
+            }else{
+                LISTMODEL.addElement("El camino es liviano");
             }
+            LISTMODEL.addElement("================================");
+            profundidad(auxA.destino);
+            auxA = auxA.sigA;
+
         }
     }
 
@@ -200,13 +206,12 @@ public class Metodos {
             aux = aux.sigV;
         }
     }
-    
-    public boolean modificarVertice(Ciudad city, String nombre){
-        if (buscar(nombre)==null){
-            city.nombre=nombre;
+
+    public boolean modificarVertice(Ciudad city, String nombre) {
+        if (buscar(nombre) == null) {
+            city.nombre = nombre;
             return true;
         }
         return false;
     }
-    
 }
