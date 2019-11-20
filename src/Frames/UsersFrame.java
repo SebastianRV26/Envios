@@ -287,7 +287,8 @@ public class UsersFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(jTextField2.getText());
+        try{
+            int id = Integer.parseInt(jTextField2.getText());
         String nombre = jTextField1.getText();
         String licencia = jComboBox1.getSelectedItem().toString();
         Usuario usuario = new Usuario(id, nombre, licencia);
@@ -296,6 +297,10 @@ public class UsersFrame extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "No creo el usuraio");
         }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Solo se permiten numeros");
+        }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -305,7 +310,8 @@ public class UsersFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(jTextField5.getText());
+        try{
+            int id = Integer.parseInt(jTextField5.getText());
         String nombre =jTextField6.getText();
         String licencia = jComboBox2.getSelectedItem().toString();
         if(hash.modificar(id, nombre, licencia)){
@@ -313,14 +319,20 @@ public class UsersFrame extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "No se modifico el usuraio");
         }
-        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Solo se permiten numeros");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int ID = Integer.parseInt(jTextField4.getText());
+        try{
+            int ID = Integer.parseInt(jTextField4.getText());
         String resultado = hash.delete(ID);
         JOptionPane.showMessageDialog(this, resultado);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Solo se permiten numeros");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -326,8 +326,8 @@ public class pedidos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        if(jTextField1.getText().isEmpty()||jTextField4.getText().isEmpty()){
+        try{
+            if(jTextField1.getText().isEmpty()||jTextField4.getText().isEmpty()){
             JOptionPane.showMessageDialog(this,"Hay espacios vacios");
         }else{
             int id = Integer.parseInt(jTextField1.getText());
@@ -369,22 +369,30 @@ public class pedidos extends javax.swing.JFrame {
             }
         }
         }
-        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"Solo se permiten numeros");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(jTextField5.getText());
+        try{
+            int id = Integer.parseInt(jTextField5.getText());
         if(arbol.Eliminar(arbol.raiz, id)){
             JOptionPane.showMessageDialog(this, "Se elimino el pedido");
         }else{
             JOptionPane.showMessageDialog(this, "No se elimino el pedido");
         }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"Solo se permite numeros");
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if(jTextField9.getText().isEmpty()||jTextField8.getText().isEmpty()){
+        try{
+            if(jTextField9.getText().isEmpty()||jTextField8.getText().isEmpty()){
             JOptionPane.showMessageDialog(this,"Hay espacios vacios");
         }else{
             int id = Integer.parseInt(jTextField9.getText());
@@ -399,6 +407,9 @@ public class pedidos extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(this, "No se modifico el pedido");
             }
+        }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"Solo se permiten numeros");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
