@@ -175,6 +175,7 @@ public class Metodos {
 
     public String rc = "";
     public int minRC = 0;
+    public double velocidad=0;
     public boolean existe = false;
 
     public void rutaCorta(Ciudad origen, Ciudad destino, String ruta, int dist) {
@@ -223,7 +224,7 @@ public class Metodos {
         origen.marca = false;
     }
    */ 
-    public void rutaCortaDistancia(Ciudad origen, Ciudad destino, String ruta, int dist, Camino calle, Pedidos pedido){
+    public void rutaCortaDistancia(Ciudad origen, Ciudad destino, String ruta, int dist, int vel, Pedidos pedido){
         if ((origen == null) || (origen.marca == true)){
             return;
         } 
@@ -231,6 +232,7 @@ public class Metodos {
             if((rc.equals("")) || (minRC > dist) ) {
                 rc = ruta + " / "+ destino.nombre;
                 minRC = dist;
+                velocidad = vel;
             }  
             existe=true;
             return;
@@ -238,32 +240,37 @@ public class Metodos {
         origen.marca = true;
         Camino a = origen.sigA;
         while (a != null) {
-            Camino camino = buscar(a.destino, destino);
-            //if (camino!=null && camino.pasoVehiculosPesados==pedido.)
-            rutaCortaDistancia(a.destino, destino, ruta +" / "+ origen.nombre, dist + a.distancia, a, pedido);
+            if ((pedido.peso>5000) && (a.pasoVehiculosPesados==false)){
+                //gg
+            }else{
+                rutaCortaDistancia(a.destino, destino, ruta +" / "+ origen.nombre, dist + a.distancia,vel+a.velMax, pedido);
+            }     
             a = a.sigA;
         }
         origen.marca = false;
     }
     
-    public void rutaCortaTiempo(Ciudad origen, Ciudad destino, String ruta, int dist) {
-        if ((origen == null) || (origen.marca == true)) {
+    public void rutaCortaTiempo(Ciudad origen, Ciudad destino, String ruta, int dist, int vel, Pedidos pedido) {
+        if ((origen == null) || (origen.marca == true)){
             return;
-        }
-        if (origen == destino) {
-            //listModelRutaCortaDistancia.addElement("Ruta: " + ruta + destino.nombre);
-            //listModelRutaCortaDistancia.addElement("Con una distancia de: " + dist);
-            if ((rc.equals("")) || (minRC > dist)) {
-                rc = ruta + destino.nombre;
+        } 
+        if (origen == destino){  
+            if((rc.equals("")) || (minRC > dist) ) {
+                rc = ruta + " / "+ destino.nombre;
                 minRC = dist;
-            }
-            existe = true;
+                velocidad = vel;
+            }  
+            existe=true;
             return;
         }
         origen.marca = true;
         Camino a = origen.sigA;
         while (a != null) {
-            rutaCorta(a.destino, destino, ruta + origen.nombre, dist + a.distancia);
+            if ((pedido.peso>5000) && (a.pasoVehiculosPesados==false)){
+                //gg
+            }else{
+                rutaCortaTiempo(a.destino, destino, ruta +" / "+ origen.nombre, dist + a.distancia,vel+a.velMax, pedido);
+            }     
             a = a.sigA;
         }
         origen.marca = false;
