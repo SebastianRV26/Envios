@@ -116,6 +116,7 @@ public class Caminos extends javax.swing.JFrame {
         jTextField3.setName(""); // NOI18N
 
         buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Pesado");
 
         buttonGroup1.add(jRadioButton2);
@@ -282,8 +283,7 @@ public class Caminos extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(jRadioButton3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioButton4)
-                                    .addGap(13, 13, 13))))
+                                    .addComponent(jRadioButton4))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
