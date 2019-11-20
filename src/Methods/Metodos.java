@@ -224,6 +224,7 @@ public class Metodos {
         origen.marca = false;
     }
    */ 
+    
     public void rutaCortaDistancia(Ciudad origen, Ciudad destino, String ruta, int dist, int vel, Pedidos pedido){
         if ((origen == null) || (origen.marca == true)){
             return;
@@ -241,7 +242,7 @@ public class Metodos {
         Camino a = origen.sigA;
         while (a != null) {
             if ((pedido.peso>5000) && (a.pasoVehiculosPesados==false)){
-                //gg
+                //no haga nada 
             }else{
                 rutaCortaDistancia(a.destino, destino, ruta +" / "+ origen.nombre, dist + a.distancia,vel+a.velMax, pedido);
             }     
@@ -249,16 +250,17 @@ public class Metodos {
         }
         origen.marca = false;
     }
-    
+    public float mintime=0F;
     public void rutaCortaTiempo(Ciudad origen, Ciudad destino, String ruta, int dist, int vel, Pedidos pedido) {
         if ((origen == null) || (origen.marca == true)){
             return;
         } 
         if (origen == destino){  
-            if((rc.equals("")) || (minRC > dist) ) {
+            if((rc.equals("")) || (mintime > dist/vel) ) {
                 rc = ruta + " / "+ destino.nombre;
                 minRC = dist;
                 velocidad = vel;
+                mintime=((float)dist/vel)*60;
             }  
             existe=true;
             return;
@@ -267,7 +269,7 @@ public class Metodos {
         Camino a = origen.sigA;
         while (a != null) {
             if ((pedido.peso>5000) && (a.pasoVehiculosPesados==false)){
-                //gg
+                //no haga nada 
             }else{
                 rutaCortaTiempo(a.destino, destino, ruta +" / "+ origen.nombre, dist + a.distancia,vel+a.velMax, pedido);
             }     

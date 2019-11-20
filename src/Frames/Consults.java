@@ -358,9 +358,9 @@ public class Consults extends javax.swing.JFrame {
                     met.rutaCortaDistancia(met.buscar(pedido.origen), met.buscar(pedido.destino), "", 0, 0, pedido);
                     if (met.existe) {
                         listModel.addElement("Ruta: " + met.rc);
-                        listModel.addElement("Con una distancia de: " + met.minRC + "km");
-                        double cant = met.minRC / met.velocidad * 60;
-                        listModel.addElement("Con un tiempo de: " + cant + " mins");
+                        listModel.addElement("Con una distancia mínima de: " + met.minRC + "km");
+                        double cant = (met.minRC / met.velocidad) * 60;
+                        listModel.addElement("Y con un tiempo de: " + cant + " mins");
                     }
                     jList1.setModel(listModel);
                 } else {
@@ -378,6 +378,7 @@ public class Consults extends javax.swing.JFrame {
         met.rc = "";
         met.minRC = 0;
         met.velocidad = 0;
+        met.mintime=0;
         met.existe = false;
         try {
             if (jTextField1.getText() != null) {
@@ -388,9 +389,8 @@ public class Consults extends javax.swing.JFrame {
                     met.rutaCortaTiempo(met.buscar(pedido.origen), met.buscar(pedido.destino), "", 0, 0, pedido);
                     if (met.existe) {
                         listModel.addElement("Ruta: " + met.rc);
-                        listModel.addElement("Con una distancia de: " + met.minRC + "km");
-                        double cant = met.minRC / met.velocidad * 60;
-                        listModel.addElement("Con un tiempo de: " + cant + " mins");
+                        listModel.addElement("Con un tiempo mínimo de: " + met.mintime + " mins");
+                        listModel.addElement("Y con una distancia de: " + met.minRC + "km");
                     }
                     jList1.setModel(listModel);
                 } else {
