@@ -8,6 +8,7 @@ package Enum;
 /**
  *
  * @author pache
+ * Este es un enum para tener los tipos de licencia
  */
 public enum TipoLicencia {
     B1,

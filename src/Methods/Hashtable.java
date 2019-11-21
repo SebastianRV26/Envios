@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
  * @author pache
  */
 public class Hashtable {
+    /**
+     * Este es el sigleton de el hash para que no se pierdan los datos
+     */
     public DefaultListModel<String> LISTMODEL2 = new DefaultListModel<>();
     public static Hashtable instance = null;
     public static Hashtable getInstance(){
@@ -22,6 +25,11 @@ public class Hashtable {
         }
         return instance;
     }
+    /**
+     * Esta es la formula de el hash para meter los usuarios en el hash
+     * @param number
+     * @return el numero
+     */
     private int hash(int number){
         return (number & 0xfffffff)% 13;
     }
@@ -74,7 +82,9 @@ public class Hashtable {
         return aux;
        
     }
-   
+   /**
+    * Impirme los usuarios registrados en el sistema
+    */
     public void print(){
         LISTMODEL2.addElement("                          USUARIOS REGISTRADOS EN EL SISTEMA");
         for (int i = 0; i < Main.listaUsuarios.length; i++) {
@@ -87,6 +97,13 @@ public class Hashtable {
         }
          
     }
+    /**
+     * Modifica los usuarios registrados en el sistema
+     * @param id
+     * @param nombre
+     * @param licencia
+     * @return true o false dependiendo del resultado de la modificacion
+     */
     public boolean modificar(int id,String nombre,String licencia){
         for (int i = 0; i < Main.listaUsuarios.length; i++) {
             for (Usuario aux = Main.listaUsuarios[i]; aux != null; aux = aux.sig) {
@@ -99,7 +116,11 @@ public class Hashtable {
     }
         return false;
     }
-    
+    /**
+     * Elimina usuarios de la tabla hash
+     * @param number
+     * @return un string dependiendo de lo que paso
+     */
     public String delete(int number) {
         int key = this.hash(number);
 

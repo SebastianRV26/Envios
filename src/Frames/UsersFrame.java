@@ -277,14 +277,20 @@ public class UsersFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Este boton lo que hace es volver al frame principal
+ * @param evt 
+ */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         MainFrame fr = new MainFrame();
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+/**
+ * Este boton es el encargado de agregar un usuario al sistema 
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
@@ -307,7 +313,10 @@ public class UsersFrame extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+/**
+ * Este boton lo que hace es modificar los usuarios existentes en el sistema
+ * @param evt 
+ */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
@@ -323,7 +332,10 @@ public class UsersFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Solo se permiten numeros");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
+/**
+ * Este boton lo que hace es eliminar un usuario del sistema
+ * @param evt 
+ */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         try{
