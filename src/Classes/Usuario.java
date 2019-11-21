@@ -8,6 +8,7 @@ package Classes;
 /**
  *
  * @author Sebas
+ * Este es la clase usuario con su constructor
  */
 public class Usuario {
     public int ID;

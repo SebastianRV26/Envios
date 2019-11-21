@@ -8,6 +8,7 @@ package Classes;
 /**
  *
  * @author pache
+ * Esta es la clase pedido con su constructor
  */
 public class Pedidos {
     public int id;

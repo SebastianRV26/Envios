@@ -22,7 +22,8 @@ import java.awt.geom.Path2D;
 
 /**
  *
- * @author DanielR
+ * @author pache
+ * Este es el cambas que al final no se implemento
  */
 public class CanvasController extends Canvas implements ActionListener,MouseListener{
 

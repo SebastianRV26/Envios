@@ -323,7 +323,10 @@ public class pedidos extends javax.swing.JFrame {
         fr.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+/**
+ * Este boton es el encargado de crear pedidos en el sistema y validar que los conductores puedan jalar las cargas dependiendo de su licencia
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
@@ -373,7 +376,10 @@ public class pedidos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Solo se permiten numeros");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+/**
+ * Este metodo lo que hace es eliminar pedidos que se encuentren el sistema
+ * @param evt 
+ */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         try{
@@ -388,7 +394,10 @@ public class pedidos extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
-
+/**
+ * Este boton lo que hace es modificar pedidos existentes del sistema
+ * @param evt 
+ */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{

@@ -13,13 +13,16 @@ import javax.swing.DefaultListModel;
  * @author pache
  */
 public class Arbol {
+    /**
+     * Esto son algunas variables necesarias en los metodos de los arboles
+     */
     public Pedidos variable;
    public DefaultListModel<String> LISTMODEL = new DefaultListModel<>();
     public boolean bandera = false;
     int alt =0;
     int hojas = 0;
     int nodos = 0;
-    
+    //sigleton del arbol para que no se pierdan los datos
     public static Arbol instance = null;
     public static Arbol getInstance(){
         if(instance == null){
@@ -29,6 +32,16 @@ public class Arbol {
     }
     
     public Pedidos raiz;
+    /**
+     * Este es el metodo encargado de insertar los pedidos en un arbol
+     * @param id
+     * @param aux
+     * @param peso
+     * @param origen
+     * @param destino
+     * @param conductor
+     * @return boolean para indicar si se realizo la accion o no
+     */
     public boolean insertar (int id, Pedidos aux,int peso,String origen,String destino,String conductor){
         Pedidos nuevo = new Pedidos(id,peso,destino,origen,conductor);
         if (raiz==null){
@@ -57,7 +70,10 @@ public class Arbol {
         }
       return bandera;
     }
-    
+    /**
+     * Este metodo es el encargado de imprimir los pedidos ordenados
+     * @param aux 
+     */
     public void imprimir(Pedidos aux){
         if (aux == null){return;}
             imprimir(aux.izq);
@@ -69,7 +85,12 @@ public class Arbol {
             LISTMODEL.addElement("------------------");
             imprimir (aux.der);   
     }
-    
+    /**
+     * Este metodo es el encargado de eliminar pedidos del el arbol :D
+     * @param aux
+     * @param num
+     * @return 
+     */
     public boolean Eliminar(Pedidos aux,int num){
             if(raiz.id == num){
                 if(raiz.izq==null &&raiz.der==null){
@@ -171,7 +192,15 @@ public class Arbol {
             }
             return false;
         }
-    
+    /**
+     * Este metodo modifica los pedidos que existen en el sistema y dependiendo del estado de la bandera fue correcto la modificacion o no
+     * @param id
+     * @param aux
+     * @param origen
+     * @param destino
+     * @param peso
+     * @return nada
+     */
     public Pedidos modificar(int id,Pedidos aux,String origen,String destino,int peso){
         if (raiz == null){
             return null;
