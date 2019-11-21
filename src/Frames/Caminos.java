@@ -490,7 +490,7 @@ public class Caminos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBeforeActionPerformed
 
     private void btnAddRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRoadActionPerformed
-        // TODO add your handling code here:
+        // metodo que agrega un camino
         String cmb1 = jComboBox1.getSelectedItem().toString();
         String cmb2 = jComboBox2.getSelectedItem().toString();
         if (cmb1!=null && cmb2!=null && cmb1.equals(cmb2)==false){
@@ -521,7 +521,7 @@ public class Caminos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddRoadActionPerformed
 
     private void btnEditRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRoadActionPerformed
-        // TODO add your handling code here:
+        // metodo que edita un camino
         if (roadToEdit!=null){
             try{
                 roadToEdit.distancia = Integer.parseInt(jTextField4.getText());
@@ -553,7 +553,7 @@ public class Caminos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditRoadActionPerformed
 
     private void btnDeleteRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteRoadActionPerformed
-        // TODO add your handling code here:
+        // metodo que elimina un camino
         try{
             if(met.eliminaArco(met.buscar(jComboBox5.getSelectedItem().toString()), met.buscar(jComboBox6.getSelectedItem().toString()))){
                 met.eliminaArco(met.buscar(jComboBox6.getSelectedItem().toString()), met.buscar(jComboBox5.getSelectedItem().toString()));

@@ -21,6 +21,10 @@ public class Main {
 public static Usuario[] listaUsuarios = new Usuario [13];
 
     public static void main(String[] args) {  
+        /*
+        Fecha de inicio: 28/10/2019
+        Fecha última modificación: 20/11/2019
+        */
         Metodos met = Metodos.getInstance();
         Hashtable hash = Hashtable.getInstance();
         //arbol quemado
@@ -30,9 +34,9 @@ public static Usuario[] listaUsuarios = new Usuario [13];
         hash.insertarUsuario(usuario);
         hash.insertarUsuario(new Usuario(2820, "Sebas", "B4"));
         
-        arbol.insertar(50,arbol.raiz,300,"fdso","fsdf","jairo");
-        arbol.insertar(2,arbol.raiz,86,"fdso","fsdf","jairo");
-        arbol.insertar(100,arbol.raiz,300,"fdso","fsdf","jairo");
+        arbol.insertar(50,arbol.raiz,300,"Cuatro Esquinas","San Ramón","jairo");
+        arbol.insertar(2,arbol.raiz,86,"Aguas Zarcas","Cuatro Esquinas","jairo");
+        arbol.insertar(100,arbol.raiz,300,"San Ramón","Pital","jairo");
         
         arbol.insertar(111,arbol.raiz,3000,"Cuatro Esquinas","Pital","Sebas");
         arbol.insertar(222,arbol.raiz,7000,"Cuatro Esquinas","Pital","Sebas");
@@ -60,8 +64,6 @@ public static Usuario[] listaUsuarios = new Usuario [13];
         met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("Santa Clara"), 5, true, 80);
         met.insertarArco(met.buscar("Aguas Zarcas"), met.buscar("Santa Clara"), 10, true, 70);
         met.insertarArco(met.buscar("Ciudad Quesada"), met.buscar("San Ramón"), 50, true, 120);
-        //met.insertarArco(met.buscar(""), met.buscar(""), 0, true, 0, 0);
-        //met.insertarArco(met.buscar(""), met.buscar(""), 0, true, 0, 0);
         //abrir el frame
         MainFrame fr = new MainFrame();//Crear el FrameRegistro XD
         fr.setVisible(true);

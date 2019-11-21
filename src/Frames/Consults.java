@@ -326,7 +326,7 @@ public class Consults extends javax.swing.JFrame {
     }//GEN-LAST:event_printHashTableActionPerformed
 
     private void printProfundidadGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printProfundidadGrafoActionPerformed
-        // TODO add your handling code here:
+        // metodo que llama a la profundidad
         met.LISTMODEL.clear();
         met.quitarMarca();
         met.profundidad(met.buscar(jComboBox1.getSelectedItem().toString()));
@@ -334,7 +334,7 @@ public class Consults extends javax.swing.JFrame {
     }//GEN-LAST:event_printProfundidadGrafoActionPerformed
 
     private void printAmplitudGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printAmplitudGrafoActionPerformed
-        // TODO add your handling code here:
+        // metodo que llama a la amplitud
         met.listModel.clear();
         met.quitarMarca();
         System.out.println(jComboBox1.getName());
@@ -343,7 +343,7 @@ public class Consults extends javax.swing.JFrame {
     }//GEN-LAST:event_printAmplitudGrafoActionPerformed
 
     private void printDistancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printDistancyActionPerformed
-        // TODO add your handling code here:
+        // método que llama a la ruta corta de distancia
         DefaultListModel<String> listModel = new DefaultListModel<>();
         met.rc = "";
         met.minRC = 0;
@@ -373,7 +373,7 @@ public class Consults extends javax.swing.JFrame {
     }//GEN-LAST:event_printDistancyActionPerformed
 
     private void printShortRuteTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printShortRuteTimeActionPerformed
-        // TODO add your handling code here:
+        // método que llama a la ruta corta de tiempo
         DefaultListModel<String> listModel = new DefaultListModel<>();
         met.rc = "";
         met.minRC = 0;
