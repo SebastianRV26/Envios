@@ -6,18 +6,23 @@
 package Frames;
 
 import Classes.Ciudad;
+import Classes.Pedidos;
 import Methods.Arbol;
 import Methods.Hashtable;
 import Methods.Metodos;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Sebas
  */
 public class Consults extends javax.swing.JFrame {
+
     Arbol arbol = Arbol.getInstance();
     Metodos met = Metodos.getInstance();
     Hashtable hash = Hashtable.getInstance();
+
     /**
      * Creates new form Consults
      */
@@ -41,10 +46,8 @@ public class Consults extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         printDistancy = new javax.swing.JButton();
         printShortRuteTime = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         printProfundidadGrafo = new javax.swing.JButton();
@@ -83,9 +86,7 @@ public class Consults extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Origen");
-
-        jLabel6.setText("Destino");
+        jLabel6.setText("Pedido ID");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -103,13 +104,9 @@ public class Consults extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(printShortRuteTime))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox2, 0, 150, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -117,19 +114,15 @@ public class Consults extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printDistancy)
                     .addComponent(printShortRuteTime))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -322,7 +315,7 @@ public class Consults extends javax.swing.JFrame {
         arbol.LISTMODEL.addElement("                           PEDIDOS REGISTRADOS EN EL SISTEMA");
         arbol.imprimir(arbol.raiz);
         jList1.setModel(arbol.LISTMODEL);
-       
+
     }//GEN-LAST:event_printTreeInOrdenActionPerformed
 
     private void printHashTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printHashTableActionPerformed
@@ -333,7 +326,7 @@ public class Consults extends javax.swing.JFrame {
     }//GEN-LAST:event_printHashTableActionPerformed
 
     private void printProfundidadGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printProfundidadGrafoActionPerformed
-        // TODO add your handling code here:
+        // metodo que llama a la profundidad
         met.LISTMODEL.clear();
         met.quitarMarca();
         met.profundidad(met.buscar(jComboBox1.getSelectedItem().toString()));
@@ -341,28 +334,72 @@ public class Consults extends javax.swing.JFrame {
     }//GEN-LAST:event_printProfundidadGrafoActionPerformed
 
     private void printAmplitudGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printAmplitudGrafoActionPerformed
-        // TODO add your handling code here:
+        // metodo que llama a la amplitud
         met.listModel.clear();
-        met.quitarMarca(); 
+        met.quitarMarca();
         System.out.println(jComboBox1.getName());
         met.amplitud(met.buscar(jComboBox1.getSelectedItem().toString()));
         jList1.setModel(met.listModel);
     }//GEN-LAST:event_printAmplitudGrafoActionPerformed
 
     private void printDistancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printDistancyActionPerformed
-        // TODO add your handling code here:
-        met.listModelRutaCortaDistancia.clear();
-        met.rutaCorta(met.buscar(jComboBox2.getSelectedItem().toString()), 
-                met.buscar(jComboBox3.getSelectedItem().toString()), "", 0);
-        
+        // método que llama a la ruta corta de distancia
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        met.rc = "";
+        met.minRC = 0;
+        met.velocidad = 0;
+        met.existe = false;
+        try {
+            if (jTextField1.getText() != null) {
+                arbol.variable=null;
+                arbol.buscar(Integer.parseInt(jTextField1.getText()), arbol.raiz);
+                if (arbol.variable != null) {
+                    Pedidos pedido = arbol.variable;
+                    met.rutaCortaDistancia(met.buscar(pedido.origen), met.buscar(pedido.destino), "", 0, 0, pedido);
+                    if (met.existe) {
+                        listModel.addElement("Ruta: " + met.rc);
+                        listModel.addElement("Con una distancia mínima de: " + met.minRC + "km");
+                        double cant = (met.minRC / met.velocidad) * 60;
+                        listModel.addElement("Y con un tiempo de: " + cant + " mins");
+                    }
+                    jList1.setModel(listModel);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Pedido no encontrado");
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Favor ingresar un ID válido");
+        }
     }//GEN-LAST:event_printDistancyActionPerformed
 
     private void printShortRuteTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printShortRuteTimeActionPerformed
-        // TODO add your handling code here:
-        met.listModelRutaCortaDistancia.clear();
-        met.rutaCorta(met.buscar(jComboBox2.getSelectedItem().toString()), 
-                met.buscar(jComboBox3.getSelectedItem().toString()), "", 0);
-        
+        // método que llama a la ruta corta de tiempo
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        met.rc = "";
+        met.minRC = 0;
+        met.velocidad = 0;
+        met.mintime=0;
+        met.existe = false;
+        try {
+            if (jTextField1.getText() != null) {
+                arbol.variable=null;
+                arbol.buscar(Integer.parseInt(jTextField1.getText()), arbol.raiz);
+                if (arbol.variable != null) {
+                    Pedidos pedido = arbol.variable;
+                    met.rutaCortaTiempo(met.buscar(pedido.origen), met.buscar(pedido.destino), "", 0, 0, pedido);
+                    if (met.existe) {
+                        listModel.addElement("Ruta: " + met.rc);
+                        listModel.addElement("Con un tiempo mínimo de: " + met.mintime + " mins");
+                        listModel.addElement("Y con una distancia de: " + met.minRC + "km");
+                    }
+                    jList1.setModel(listModel);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Pedido no encontrado");
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Favor ingresar un ID válido");
+        }
     }//GEN-LAST:event_printShortRuteTimeActionPerformed
 
     /**
@@ -403,13 +440,10 @@ public class Consults extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBefore;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
@@ -417,6 +451,7 @@ public class Consults extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton printAmplitudGrafo;
     private javax.swing.JButton printDistancy;
     private javax.swing.JButton printHashTable;
@@ -425,15 +460,11 @@ public class Consults extends javax.swing.JFrame {
     private javax.swing.JButton printTreeInOrden;
     // End of variables declaration//GEN-END:variables
 
-    public void llenarCombobox(){
+    public void llenarCombobox() {
         jComboBox1.removeAllItems();
-        jComboBox2.removeAllItems();
-        jComboBox3.removeAllItems();
         Ciudad aux = met.grafo;
-        while(aux!=null){
+        while (aux != null) {
             jComboBox1.addItem(aux.nombre);
-            jComboBox2.addItem(aux.nombre);
-            jComboBox3.addItem(aux.nombre);
             aux = aux.sigV;
         }
     }

@@ -231,6 +231,7 @@ public class Arbol {
     public void buscar(int id,Pedidos aux){
         if (raiz == null){
             variable = null;
+            return;
         }
         if (id<aux.id){
             if(aux.izq == null){

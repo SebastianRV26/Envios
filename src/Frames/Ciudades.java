@@ -117,7 +117,7 @@ public class Ciudades extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCityActionPerformed
-        // TODO add your handling code here:
+        // método que agrega una ciudad
         String name = JOptionPane.showInputDialog("Nombre de la ciudad");
         if (met.insertarVertices(name)) {
             JOptionPane.showMessageDialog(null, "Insertado");
@@ -127,7 +127,7 @@ public class Ciudades extends javax.swing.JFrame {
     }//GEN-LAST:event_addCityActionPerformed
 
     private void editCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCityActionPerformed
-        // TODO add your handling code here:
+        // método que elimina una ciudad
         String name = JOptionPane.showInputDialog("Editar el nombre de la ciudad");
         if (jComboBox1.getSelectedItem() != null) {
             if (name != null) {
@@ -161,7 +161,7 @@ public class Ciudades extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteCityActionPerformed
 
     private void beforeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beforeActionPerformed
-        // TODO add your handling code here:
+        // cambio de frame
         MainFrame fr = new MainFrame();
         fr.setVisible(true);
         this.dispose();
@@ -212,6 +212,7 @@ public class Ciudades extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void llenarCombobox() {
+        //metodo que recorre la lista de vértices y los agrega a un combobox
         jComboBox1.removeAllItems();
         Ciudad aux = met.grafo;
         while (aux != null) {
